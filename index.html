@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Home</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -15,7 +16,7 @@
   <body class="bg-[#F5F5F5]">
     <main class="font-inter flex">
       <aside
-        class="py-10 w-[277px] flex flex-col gap-10 h-screen text-white bg-gradient-1 flex flex-col justify-between items-center"
+        class="py-10 w-[277px] flex flex-col gap-10 h-screen text-white bg-gradient-purple1 flex flex-col justify-between items-center"
       >
         <h1 class="underline underline-offset-4 underline-white text-[24px]">
           Project SBM
@@ -42,38 +43,163 @@
       <div class="p-10 w-full">
         <div class="flex items-center gap-5">
           <h1
-            class="text-[24px] font-semibold bg-gradient-1 text-transparent bg-clip-text"
+            class="text-[24px] font-semibold bg-gradient-purple2 text-transparent bg-clip-text"
           >
             Dashboard
           </h1>
-          <hr class="w-full bg-gradient-1 h-[4px] rounded-full" />
+          <hr class="w-full bg-gradient-purple1 h-[4px] rounded-full" />
         </div>
         <main class="flex flex-col gap-5 py-5">
           <div class="flex gap-5">
-            <div class="drop-shadow-1 relative bg-white px-4 py-3 overflow-hidden rounded-[20px] w-[250px]">
+            <div
+              class="drop-shadow-1 relative bg-white px-4 py-3 overflow-hidden rounded-[20px] w-[250px]"
+            >
               <h1 class="text-[20px] text-[#5740B4]">Temperature</h1>
-              <h2 class="text-[30px] font-bold text-[#5740B4]">33.5 C</h2>
-              <img class="absolute top-0 right-0 h-full" src="https://sbm-final-project-fe.vercel.app/temp_icon.png" alt="" />
+              <h2
+                class="text-[30px] font-bold text-transparent bg-gradient-purple2 bg-clip-text w-fit"
+              >
+                33.5 C
+              </h2>
+              <img
+                class="absolute top-0 right-0 h-full"
+                src="https://sbm-final-project-fe.vercel.app/temp_icon.png"
+                alt=""
+              />
             </div>
-            <div class="drop-shadow-1 bg-white px-4 py-3 relative overflow-hidden rounded-[20px] w-[250px]">
+            <div
+              class="drop-shadow-1 bg-white px-4 py-3 relative overflow-hidden rounded-[20px] w-[250px]"
+            >
               <h1 class="text-[20px] text-[#5740B4]">Humidity</h1>
-              <h2 class="text-[30px] font-bold text-[#5740B4]">70 %</h2>
-              <img src="https://sbm-final-project-fe.vercel.app/humid_icon.png" alt="" class="absolute top-0 right-0 h-full" />
+              <h2
+                class="text-[30px] font-bold text-transparent bg-gradient-purple2 bg-clip-text w-fit"
+              >
+                70 %
+              </h2>
+              <img
+                src="https://sbm-final-project-fe.vercel.app/humid_icon.png"
+                alt=""
+                class="absolute top-0 right-0 h-full"
+              />
             </div>
           </div>
-          <div class="drop-shadow-1 bg-white px-4 py-3 relative overflow-hidden rounded-[20px] w-[550px] h-[200px]">
-            <h1 class="text-[20px] text-[#5740B4]">Chart</h1>
+          <div class="flex gap-5">
+            <div
+              class="drop-shadow-1 bg-white px-4 py-3 relative overflow-hidden rounded-[20px] w-[550px]"
+            >
+              <div class="flex justify-between mb-3">
+                <h1 class="text-[20px] text-[#5740B4]">Status Chart</h1>
+                <form class="bg-gradient-purple2 p-[1px] h-fit rounded-[6px]">
+                  <select
+                    class="w-fit rounded-[5px] text-center text-[#5740B4]"
+                  >
+                    <option>Speed</option>
+                    <option>Acceleration</option>
+                    <option>Speed</option>
+                  </select>
+                </form>
+              </div>
+              <div>
+                <canvas id="myChart"></canvas>
+              </div>
+            </div>
+            <div class="drop-shadow-1 bg-white px-4 py-3 rounded-[20px]">
+              <div class="flex justify-between items-end mb-3">
+                <h1 class="text-[20px] text-[#5740B4]">Car Status</h1>
+                <div class="flex items-center gap-3 bg-gradient-green1 text-transparent bg-clip-text font-bold">
+                  <span
+                    class="block w-[10px] h-[10px] rounded-full bg-gradient-green1"
+                  ></span>
+                  Monitoring
+                </div>
+              </div>
+              <div class="flex gap-20 mb-2">
+                <div>
+                  <h1 class="text-[#828282] text-[14px] font-semibold">
+                    Speed
+                  </h1>
+                  <h2
+                    class="text-[30px] font-bold text-transparent bg-gradient-purple2 bg-clip-text w-fit"
+                  >
+                    6 m/s
+                  </h2>
+                </div>
+                <div>
+                  <h1 class="text-[#828282] text-[14px] font-semibold">
+                    Distance Travelled
+                  </h1>
+                  <h2
+                    class="text-[30px] font-bold text-transparent bg-gradient-purple2 bg-clip-text w-fit"
+                  >
+                    20 m
+                  </h2>
+                </div>
+              </div>
+              <div class="flex gap-20 mb-2">
+                <div>
+                  <h1 class="text-[#828282] text-[14px] font-semibold">
+                    Drift (yaw)
+                  </h1>
+                  <h2
+                    class="text-[30px] font-bold text-transparent bg-gradient-purple2 bg-clip-text w-fit"
+                  >
+                    5.28 °
+                  </h2>
+                </div>
+                <div>
+                  <h1 class="text-[#828282] text-[14px] font-semibold">
+                    Drift (roll)
+                  </h1>
+                  <h2
+                    class="text-[30px] font-bold text-transparent bg-gradient-purple2 bg-clip-text w-fit"
+                  >
+                    -8.28 °
+                  </h2>
+                </div>
+              </div>
+              <div class="flex gap-20">
+                <div>
+                  <h1 class="text-[#828282] text-[14px] font-semibold">
+                    Drift (pitch)
+                  </h1>
+                  <h2
+                    class="text-[30px] font-bold text-transparent bg-gradient-purple2 bg-clip-text w-fit"
+                  >
+                    8.29 °
+                  </h2>
+                </div>
+              </div>
+            </div>
           </div>
         </main>
       </div>
     </main>
   </body>
   <style>
-    .bg-gradient-1 {
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    .bg-gradient-purple1 {
       background: linear-gradient(
         rgba(42, 88, 208),
         rgba(87, 64, 180),
         rgba(66, 145, 180)
+      );
+    }
+    .bg-gradient-purple2 {
+      background: linear-gradient(
+        100deg,
+        rgba(42, 88, 208),
+        rgba(87, 64, 180),
+        rgba(66, 145, 180)
+      );
+    }
+    .bg-gradient-green1 {
+      background: linear-gradient(
+        #0DCC2B,
+        #11AC62,
+        #3E9B65
       );
     }
     .font-inter {
@@ -87,4 +213,31 @@
       filter: drop-shadow(5px 12px 10px rgba(0, 0, 0, 0.3));
     }
   </style>
+  <script defer>
+    const ctx = document.getElementById("myChart");
+
+    new Chart(ctx, {
+      type: "line",
+      data: {
+        labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+        datasets: [
+          {
+            label: "# of Votes",
+            data: [12, 19, 3, 5, 2, 3],
+            borderWidth: 1,
+          },
+        ],
+      },
+      options: {
+        backgroundColor: "#5740B4",
+        borderWidth: 10,
+        borderColor: "#5740B4D3",
+        scales: {
+          y: {
+            beginAtZero: true,
+          },
+        },
+      },
+    });
+  </script>
 </html>
