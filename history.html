@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="bg-[#F5F5F5]">
+    <main class="font-inter flex">
+      <aside
+        class="py-10 w-[277px] flex flex-col gap-10 h-screen text-white bg-gradient-purple1 flex flex-col justify-between items-center"
+      >
+        <h1 class="underline underline-offset-4 underline-white text-[24px]">
+          Project SBM
+        </h1>
+        <ul class="text-[24px] relative w-full flex flex-col items-center">
+          <div
+            class="absolute right-0 top-0 bg-[#F5F5F5] w-[95%] h-[25%] rounded-l-full translate-y-[100%]"
+          ></div>
+          <li class="py-3 z-[2]">
+            <a href="/">Home</a>
+          </li>
+          <li class="py-3 z-[2] font-semibold !text-[#5740B4]">
+            <a href="/history">History</a>
+          </li>
+          <li class="py-3 z-[2]">
+            <a href="/settings">Settings</a>
+          </li>
+          <li class="py-3 z-[2]">
+            <a href="/about">About</a>
+          </li>
+        </ul>
+        <p class="text-[18px]">&copy; 2023</p>
+      </aside>
+      <div class="p-10 w-full">
+        <div class="flex items-center gap-5">
+          <h1
+            class="text-[24px] font-semibold bg-gradient-purple2 text-transparent bg-clip-text"
+          >
+            History
+          </h1>
+          <hr class="w-full bg-gradient-purple1 h-[4px] rounded-full" />
+        </div>
+        <main class="flex flex-col gap-5 py-5">
+          
+        </main>
+      </div>
+    </main>
+  </body>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    .bg-gradient-purple1 {
+      background: linear-gradient(
+        rgba(42, 88, 208),
+        rgba(87, 64, 180),
+        rgba(66, 145, 180)
+      );
+    }
+    .bg-gradient-purple2 {
+      background: linear-gradient(
+        100deg,
+        rgba(42, 88, 208),
+        rgba(87, 64, 180),
+        rgba(66, 145, 180)
+      );
+    }
+    .bg-gradient-green1 {
+      background: linear-gradient(
+        #0DCC2B,
+        #11AC62,
+        #3E9B65
+      );
+    }
+    .font-inter {
+      font-family: "Inter", sans-serif;
+    }
+    .bg-clip-text {
+      -webkit-background-clip: text;
+      background-clip: text;
+    }
+    .drop-shadow-1 {
+      filter: drop-shadow(5px 12px 10px rgba(0, 0, 0, 0.3));
+    }
+  </style>
+  <script defer>
+    const ctx = document.getElementById("myChart");
+
+    new Chart(ctx, {
+      type: "line",
+      data: {
+        labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+        datasets: [
+          {
+            label: "# of Votes",
+            data: [12, 19, 3, 5, 2, 3],
+            borderWidth: 1,
+          },
+        ],
+      },
+      options: {
+        backgroundColor: "#5740B4",
+        borderWidth: 10,
+        borderColor: "#5740B4D3",
+        scales: {
+          y: {
+            beginAtZero: true,
+          },
+        },
+      },
+    });
+  </script>
+</html>
