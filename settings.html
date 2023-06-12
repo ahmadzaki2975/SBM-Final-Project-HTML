@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Home</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -50,7 +49,10 @@
           <hr class="w-full bg-gradient-purple1 h-[4px] rounded-full" />
         </div>
         <main class="flex flex-col gap-5 py-5">
-          
+          <div class="flex gap-3">
+            <h1>Dark Mode</h1>
+            <button id="toggle-theme" class="bg-red-500">Toggle</button>
+          </div>
         </main>
       </div>
     </main>
@@ -77,11 +79,7 @@
       );
     }
     .bg-gradient-green1 {
-      background: linear-gradient(
-        #0DCC2B,
-        #11AC62,
-        #3E9B65
-      );
+      background: linear-gradient(#0dcc2b, #11ac62, #3e9b65);
     }
     .font-inter {
       font-family: "Inter", sans-serif;
@@ -93,32 +91,25 @@
     .drop-shadow-1 {
       filter: drop-shadow(5px 12px 10px rgba(0, 0, 0, 0.3));
     }
+    .dark {
+      background-color: #16181b !important;
+      color:white;
+    }
   </style>
-  <script defer>
-    const ctx = document.getElementById("myChart");
-
-    new Chart(ctx, {
-      type: "line",
-      data: {
-        labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
-        datasets: [
-          {
-            label: "# of Votes",
-            data: [12, 19, 3, 5, 2, 3],
-            borderWidth: 1,
-          },
-        ],
-      },
-      options: {
-        backgroundColor: "#5740B4",
-        borderWidth: 10,
-        borderColor: "#5740B4D3",
-        scales: {
-          y: {
-            beginAtZero: true,
-          },
-        },
-      },
+  <script>
+    const toggleTheme = document.getElementById("toggle-theme");
+    const savedTheme = localStorage.getItem("theme");
+    toggleTheme.addEventListener("click", () => {
+      document.querySelector("html").classList.toggle("dark");
+      document.querySelector("body").classList.toggle("dark");
+      localStorage.setItem("theme", savedTheme == "light" ? "dark" : "light");
+      console.log(localStorage.getItem("theme"));
     });
+
+    // Check if theme preference is stored in local storage
+    const storedTheme = localStorage.getItem("theme");
+    if (storedTheme === "dark") {
+      document.querySelector("body").classList.add("dark");
+    }
   </script>
 </html>
