@@ -212,9 +212,18 @@
     .drop-shadow-1 {
       filter: drop-shadow(5px 12px 10px rgba(0, 0, 0, 0.3));
     }
+    .dark {
+      background-color: #16181b !important;
+      color:white;
+    }
   </style>
   <script defer>
     const ctx = document.getElementById("myChart");
+    const body = document.querySelector("body");
+
+    if(localStorage.getItem("theme") === "dark") {
+      body.classList.add("dark");
+    }
 
     new Chart(ctx, {
       type: "line",
