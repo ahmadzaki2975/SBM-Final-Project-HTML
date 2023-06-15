@@ -18,22 +18,46 @@
       <aside
         class="py-10 w-[277px] relative flex flex-col gap-10 h-screen text-white bg-gradient-purple1 flex flex-col justify-between items-center"
       >
-        <img class="px-5" src="https://sbm-final-project-fe.vercel.app/Logo.png" />
+        <img
+          class="px-5"
+          src="https://sbm-final-project-fe.vercel.app/Logo.png"
+        />
         <ul class="text-[24px] w-full flex flex-col items-center relative">
           <div
             class="absolute right-0 top-0 bg-[#F5F5F5] w-[95%] h-[25%] rounded-l-full"
           ></div>
           <li class="py-3 z-[2] font-semibold !text-[#5740B4]">
-            <a href="/">Home</a>
+            <a href="/" class="flex items-center gap-3">
+              <img
+                class="h-[28px] mt-[-3px]"
+                src="https://sbm-final-project-fe.vercel.app/HomeActive.png"
+              />
+              Home
+            </a>
           </li>
           <li class="py-3 z-[2]">
-            <a href="/history">History</a>
+            <a class="flex gap-3 items-center" href="/history">
+              <img
+                class="h-[28px]"
+                src="https://sbm-final-project-fe.vercel.app/History.png"
+              />
+              History
+            </a>
           </li>
           <li class="py-3 z-[2]">
-            <a href="/settings">Settings</a>
+            <a class="flex items-center gap-3" href="/settings">
+              <img
+                class="w-[30px]"
+                src="https://sbm-final-project-fe.vercel.app/Settings.png"
+              />
+              Settings</a
+            >
           </li>
           <li class="py-3 z-[2]">
-            <a href="/about">About</a>
+            <a class="flex items-center gap-3" href="/about">
+              <img class="w-[30px]" src="https://sbm-final-project-fe.vercel.app/About.png" />
+              About
+            </a>
           </li>
         </ul>
         <p class="text-[18px]">&copy; 2023</p>
@@ -104,7 +128,9 @@
             <div class="drop-shadow-1 bg-white px-4 py-3 rounded-[20px]">
               <div class="flex justify-between items-end mb-3">
                 <h1 class="text-[20px] text-[#5740B4]">Car Status</h1>
-                <div class="flex items-center gap-3 bg-gradient-green1 text-transparent bg-clip-text font-bold">
+                <div
+                  class="flex items-center gap-3 bg-gradient-green1 text-transparent bg-clip-text font-bold"
+                >
                   <span
                     class="block w-[10px] h-[10px] rounded-full bg-gradient-green1"
                   ></span>
@@ -195,11 +221,7 @@
       );
     }
     .bg-gradient-green1 {
-      background: linear-gradient(
-        #0DCC2B,
-        #11AC62,
-        #3E9B65
-      );
+      background: linear-gradient(#0dcc2b, #11ac62, #3e9b65);
     }
     .font-inter {
       font-family: "Inter", sans-serif;
@@ -213,14 +235,14 @@
     }
     .dark {
       background-color: #16181b !important;
-      color:white;
+      color: white;
     }
   </style>
   <script defer>
     const ctx = document.getElementById("myChart");
     const body = document.querySelector("body");
 
-    if(localStorage.getItem("theme") === "dark") {
+    if (localStorage.getItem("theme") === "dark") {
       body.classList.add("dark");
     }
 
@@ -247,7 +269,7 @@
         },
       },
     });
-    
+
     const websocket = new WebSocket("ws://192.168.137.91/ws");
 
     websocket.addEventListener("open", (event) => {
@@ -259,6 +281,5 @@
       const temperature = document.querySelector("#temperature");
       temperature.innerHTML = JSON.parse(event.data).temperature + " °C";
     });
-    
   </script>
 </html>
