@@ -55,7 +55,10 @@
           </li>
           <li class="py-3 z-[2]">
             <a class="flex items-center gap-3" href="/about">
-              <img class="w-[30px]" src="https://sbm-final-project-fe.vercel.app/About.png" />
+              <img
+                class="w-[30px]"
+                src="https://sbm-final-project-fe.vercel.app/About.png"
+              />
               About
             </a>
           </li>
@@ -246,14 +249,16 @@
       body.classList.add("dark");
     }
 
-    new Chart(ctx, {
+    const data = [];
+    const labels = [];
+    const chart = new Chart(ctx, {
       type: "line",
       data: {
-        labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+        labels: labels,
         datasets: [
           {
             label: "# of Votes",
-            data: [12, 19, 3, 5, 2, 3],
+            data: data,
             borderWidth: 1,
           },
         ],
@@ -270,8 +275,26 @@
       },
     });
 
-    const websocket = new WebSocket("ws://192.168.137.91/ws");
+    setInterval(() => {
+      const random = Math.floor(Math.random() * 100);
+      console.log(random);
+      if (data.length > 10) {
+        data.shift();
+        labels.shift(); // Remove the corresponding label
+      }
+      data.push(random);
+      const now = new Date();
+      labels.push(
+        `${now.getHours() < 10 ? "0" + now.getHours() : now.getHours()}:${
+          now.getMinutes() < 10 ? "0" + now.getMinutes() : now.getMinutes()
+        }:${now.getSeconds() < 10 ? "0" + now.getSeconds() : now.getSeconds()}`
+      ); // Add a new label for the incoming data point
+      chart.data.datasets[0].data = data;
+      chart.data.labels = labels; // Update the chart's labels
+      chart.update();
+    }, 1000);
 
+    const websocket = new WebSocket("ws://192.168.137.91/ws");
     websocket.addEventListener("open", (event) => {
       websocket.send("Hello Server!");
     });
