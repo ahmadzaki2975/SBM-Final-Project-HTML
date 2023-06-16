@@ -18,24 +18,46 @@
       <aside
         class="py-10 w-[277px] flex flex-col gap-10 h-screen text-white bg-gradient-purple1 flex flex-col justify-between items-center"
       >
-        <h1 class="underline underline-offset-4 underline-white text-[24px]">
-          Project SBM
-        </h1>
-        <ul class="text-[24px] relative w-full flex flex-col items-center">
+        <img
+          class="px-5"
+          src="https://sbm-final-project-fe.vercel.app/Logo.png"
+        />
+        <ul class="text-[24px] w-full flex flex-col items-center relative">
           <div
             class="absolute right-0 top-0 bg-[#F5F5F5] w-[95%] h-[25%] rounded-l-full translate-y-[300%]"
           ></div>
           <li class="py-3 z-[2]">
-            <a href="/">Home</a>
+            <a href="/" class="flex items-center gap-3">
+              <img
+                class="h-[28px] mt-[-3px]"
+                src="https://sbm-final-project-fe.vercel.app/Home.png"
+              />
+              Home
+            </a>
           </li>
           <li class="py-3 z-[2]">
-            <a href="/history">History</a>
+            <a class="flex gap-3 items-center" href="/history">
+              <img
+                class="h-[28px]"
+                src="https://sbm-final-project-fe.vercel.app/History.png"
+              />
+              History
+            </a>
           </li>
           <li class="py-3 z-[2]">
-            <a href="/settings">Settings</a>
+            <a class="flex items-center gap-3" href="/settings">
+              <img
+                class="w-[30px]"
+                src="https://sbm-final-project-fe.vercel.app/Settings.png"
+              />
+              Settings</a
+            >
           </li>
-          <li class="py-3 z-[2] font-semibold !text-[#5740B4]">
-            <a href="/about">About</a>
+          <li class="py-3 z-[2] text-[#5740B4] font-semibold">
+            <a class="flex items-center gap-3" href="/about.html">
+              <img class="w-[30px]" src="https://sbm-final-project-fe.vercel.app/AboutActive.png" />
+              About
+            </a>
           </li>
         </ul>
         <p class="text-[18px]">&copy; 2023</p>
@@ -50,7 +72,11 @@
           <hr class="w-full bg-gradient-purple2 h-[4px] rounded-full" />
         </div>
         <main class="py-5">
-          <h1 class="text-[#5740B4] text-[22px] font-bold underline underline-[#5740B4]">Our Team:</h1>
+          <h1
+            class="text-[#5740B4] text-[22px] font-bold underline underline-[#5740B4]"
+          >
+            Our Team:
+          </h1>
           <ul class="text-[#5740B4]">
             <li class="w-fit">
               <a
@@ -100,16 +126,18 @@
               <h2>21/479228/TK/52833</h2>
             </li>
           </ul>
-          <h1 class="text-[#5740B4] text-[22px] font-bold underline underline-[#5740B4] mt-5">Quick Links:</h1>
+          <h1
+            class="text-[#5740B4] text-[22px] font-bold underline underline-[#5740B4] mt-5"
+          >
+            Quick Links:
+          </h1>
           <a
             class="text-[#5740B4] hover:underline undelrine-[#5740B4] font-semibold"
             href="https://github.com/ahmadzaki2975/Chem-E-Car-Monitoring"
           >
             Main Repository
           </a>
-          <p>
-            The repository containing the code for the ESP32
-          </p>
+          <p>The repository containing the code for the ESP32</p>
           <a
             class="text-[#5740B4] hover:underline undelrine-[#5740B4] font-semibold"
             href="https://github.com/ahmadzaki2975/SBM-Final-Project-HTML"
@@ -117,7 +145,8 @@
             HTML Dev Repository
           </a>
           <p>
-            The repository containing the code for the HTML during development phase.
+            The repository containing the code for the HTML during development
+            phase.
           </p>
         </main>
       </div>
