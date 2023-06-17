@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html class="overflow-x-hidden" lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -16,7 +16,7 @@
   <body class="bg-[#F5F5F5]">
     <main class="font-inter flex">
       <aside
-        class="py-10 w-[277px] relative flex flex-col gap-10 h-screen text-white bg-gradient-purple1 flex flex-col justify-between items-center"
+        class="fixed top-0 flex-shrink-0 py-10 w-[277px] flex flex-col gap-10 h-screen text-white bg-gradient-purple1 flex flex-col justify-between items-center"
       >
         <img
           class="px-5"
@@ -65,7 +65,7 @@
         </ul>
         <p class="text-[18px]">&copy; 2023</p>
       </aside>
-      <div class="p-10 w-full">
+      <div class="p-10 w-full !ml-[277px]">
         <div class="flex items-center gap-5">
           <h1
             class="text-[24px] font-semibold bg-gradient-purple2 text-transparent bg-clip-text"
@@ -75,9 +75,9 @@
           <hr class="w-full bg-gradient-purple1 h-[4px] rounded-full" />
         </div>
         <main class="flex flex-col gap-5 py-5">
-          <div class="flex gap-5">
+          <div class="flex flex-col lg:flex-row gap-5">
             <div
-              class="drop-shadow-1 relative bg-white px-4 py-3 overflow-hidden rounded-[20px] w-[250px]"
+              class="drop-shadow-1 relative bg-white px-4 py-3 overflow-hidden rounded-[20px] w-[250px] container"
             >
               <h1 class="text-[20px] text-[#5740B4]">Temperature</h1>
               <h2
@@ -93,7 +93,7 @@
               />
             </div>
             <div
-              class="drop-shadow-1 bg-white px-4 py-3 relative overflow-hidden rounded-[20px] w-[250px]"
+              class="drop-shadow-1 bg-white px-4 py-3 relative overflow-hidden rounded-[20px] w-[250px] container"
             >
               <h1 class="text-[20px] text-[#5740B4]">Humidity</h1>
               <h2
@@ -108,9 +108,9 @@
               />
             </div>
           </div>
-          <div class="flex gap-5">
+          <div class="flex gap-5 flex-col lg:flex-row">
             <div
-              class="drop-shadow-1 bg-white px-4 py-3 relative overflow-hidden rounded-[20px] w-[550px]"
+              class="drop-shadow-1 bg-white px-4 py-3 relative overflow-hidden rounded-[20px] w-[550px] container"
             >
               <div class="flex justify-between mb-3">
                 <h1 class="text-[20px] text-[#5740B4]">Status Chart</h1>
@@ -128,7 +128,9 @@
                 <canvas id="myChart"></canvas>
               </div>
             </div>
-            <div class="drop-shadow-1 bg-white px-4 py-3 rounded-[20px]">
+            <div
+              class="drop-shadow-1 bg-white px-4 py-3 rounded-[20px] container"
+            >
               <div class="flex justify-between items-end mb-3">
                 <h1 class="text-[20px] text-[#5740B4]">Car Status</h1>
                 <div
@@ -240,6 +242,14 @@
       background-color: #16181b !important;
       color: white;
     }
+    .container-dark {
+      background-color: #0f0f0f;
+      color: #b77bef !important;
+      filter: drop-shadow(0px 0px 5px rgba(42, 88, 208));
+    }
+    .text-dark {
+      color: rgba(42, 88, 208) !important;
+    }
   </style>
   <script defer>
     const ctx = document.getElementById("myChart");
@@ -247,6 +257,12 @@
 
     if (localStorage.getItem("theme") === "dark") {
       body.classList.add("dark");
+      document.querySelectorAll(".container").forEach((container) => {
+        container.classList.add("container-dark");
+      });
+      // document.querySelectorAll(".text").forEach((text) => {
+      //   text.classList.add("text-dark");
+      // });
     }
 
     const data = [];
