@@ -112,24 +112,15 @@
             <div
               class="drop-shadow-1 bg-white px-4 py-3 relative overflow-hidden rounded-[20px] w-[550px] container"
             >
-              <div class="flex justify-between mb-3">
+              <div class="flex justify-between mb-3 w-full lg:w-1/2 flex-shrink-0">
                 <h1 class="text-[20px] text-[#5740B4]">Status Chart</h1>
-                <form class="bg-gradient-purple2 p-[1px] h-fit rounded-[6px]">
-                  <select
-                    class="w-fit rounded-[5px] text-center text-[#5740B4]"
-                  >
-                    <option>Speed</option>
-                    <option>Acceleration</option>
-                    <option>Speed</option>
-                  </select>
-                </form>
               </div>
               <div>
                 <canvas id="myChart"></canvas>
               </div>
             </div>
             <div
-              class="drop-shadow-1 bg-white px-4 py-3 rounded-[20px] container"
+              class="drop-shadow-1 bg-white px-4 py-3 rounded-[20px] container w-fit"
             >
               <div class="flex justify-between items-end mb-3">
                 <h1 class="text-[20px] text-[#5740B4]">Car Status</h1>
@@ -254,6 +245,8 @@
   <script defer>
     const ctx = document.getElementById("myChart");
     const body = document.querySelector("body");
+    const espIP = window.location.host;
+    console.log(espIP);
 
     if (localStorage.getItem("theme") === "dark") {
       body.classList.add("dark");
@@ -290,7 +283,6 @@
 
     setInterval(() => {
       const random = Math.floor(Math.random() * 100);
-      console.log(random);
       if (data.length > 10) {
         data.shift();
         labels.shift();
@@ -307,7 +299,7 @@
       chart.update();
     }, 1000);
 
-    const websocket = new WebSocket("ws://192.168.137.91/ws");
+    const websocket = new WebSocket(`ws://${espIP}/ws`);
     websocket.addEventListener("open", (event) => {
       websocket.send("Hello Server!");
     });
