@@ -142,11 +142,9 @@
       console.log(localStorage.getItem("theme"));
     });
 
-    // Check if theme preference is stored in local storage
     const storedTheme = localStorage.getItem("theme");
     if (storedTheme === "dark") {
       document.querySelector("body").classList.add("dark");
-      // document.querySelector("h1").classList.add("dark");
       themeSlider.classList.add("translate-x-[100%]");
     }
   </script>

@@ -260,9 +260,6 @@
       document.querySelectorAll(".container").forEach((container) => {
         container.classList.add("container-dark");
       });
-      // document.querySelectorAll(".text").forEach((text) => {
-      //   text.classList.add("text-dark");
-      // });
     }
 
     const data = [];
@@ -296,7 +293,7 @@
       console.log(random);
       if (data.length > 10) {
         data.shift();
-        labels.shift(); // Remove the corresponding label
+        labels.shift();
       }
       data.push(random);
       const now = new Date();
@@ -304,9 +301,9 @@
         `${now.getHours() < 10 ? "0" + now.getHours() : now.getHours()}:${
           now.getMinutes() < 10 ? "0" + now.getMinutes() : now.getMinutes()
         }:${now.getSeconds() < 10 ? "0" + now.getSeconds() : now.getSeconds()}`
-      ); // Add a new label for the incoming data point
+      );
       chart.data.datasets[0].data = data;
-      chart.data.labels = labels; // Update the chart's labels
+      chart.data.labels = labels;
       chart.update();
     }, 1000);
 
@@ -316,7 +313,6 @@
     });
 
     websocket.addEventListener("message", (event) => {
-      // console.log(event.data);
       const temperature = document.querySelector("#temperature");
       temperature.innerHTML = JSON.parse(event.data).temperature + " °C";
     });
