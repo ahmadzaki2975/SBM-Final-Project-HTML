@@ -167,7 +167,7 @@
                     <h1
                       class="text-[#828282] text-center text-[14px] font-semibold"
                     >
-                      Distance (m)
+                      Distance (cm)
                     </h1>
                     <h2
                       id="distance"
@@ -180,7 +180,7 @@
                     <h1
                       class="text-[#828282] text-center text-[14px] font-semibold"
                     >
-                      Speed (m/s)
+                      Speed (cm/s)
                     </h1>
                     <h2
                       id="speed"
@@ -647,6 +647,12 @@
         gyroZs.shift();
       }
       gyroZs.push(JSON.parse(event.data).rotationZ);
+
+      const speed = document.querySelector("#speed");
+      speed.innerHTML = JSON.parse(event.data).speed;
+
+      const distance = document.querySelector("#distance");
+      distance.innerHTML = JSON.parse(event.data).distance;
 
       const misalignmentAngle = document.querySelector("#misalignmentAngle");
       misalignmentAngle.innerHTML = JSON.parse(event.data).missAngle;
