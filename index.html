@@ -147,7 +147,7 @@
                 </div>
               </div>
               <div class="flex flex-col gap-10">
-                <div class="w-full flex justify-center gap-10">
+                <div class="w-full flex justify-center">
                   <div>
                     <h1
                       class="text-[#828282] text-center text-[14px] font-semibold"
@@ -159,6 +159,21 @@
                       class="text-[30px] font-bold text-transparent bg-gradient-purple2 bg-clip-text w-full text-center"
                     >
                       00:00:00
+                    </h2>
+                  </div>
+                </div>
+                <div class="flex gap-10 justify-center">
+                  <div>
+                    <h1
+                      class="text-[#828282] text-center text-[14px] font-semibold"
+                    >
+                      Distance (m)
+                    </h1>
+                    <h2
+                      id="distance"
+                      class="text-[30px] font-bold text-transparent bg-gradient-purple2 bg-clip-text w-full text-center"
+                    >
+                      0
                     </h2>
                   </div>
                   <div>
@@ -271,20 +286,36 @@
               </div>
             </div>
             <div
-              class="drop-shadow-1 bg-white px-4 py-3 relative overflow-hidden rounded-[20px] w-[550px] container h-min"
+            class="drop-shadow-1 bg-white px-4 py-3 relative overflow-hidden rounded-[20px] w-[550px] container h-min"
+          >
+            <div
+              class="flex justify-between mb-3 w-full lg:w-1/2 flex-shrink-0"
             >
-              <div
-                class="flex justify-between mb-3 w-full lg:w-1/2 flex-shrink-0"
+              <h1
+                class="text-[20px] text-transparent bg-gradient-purple2 bg-clip-text font-semibold"
               >
-                <h1
-                  class="text-[20px] text-transparent bg-gradient-purple2 bg-clip-text font-semibold"
-                >
-                  Acceleration Chart
-                </h1>
-              </div>
-              <div>
-                <canvas id="AccelerationChart"></canvas>
-              </div>
+                Distance & Speed Chart
+              </h1>
+            </div>
+            <div>
+              <canvas id="RotaryChart"></canvas>
+            </div>
+          </div>
+          </div>
+          <div
+            class="drop-shadow-1 bg-white px-4 py-3 relative overflow-hidden rounded-[20px] w-[550px] container h-min"
+          >
+            <div
+              class="flex justify-between mb-3 w-full lg:w-1/2 flex-shrink-0"
+            >
+              <h1
+                class="text-[20px] text-transparent bg-gradient-purple2 bg-clip-text font-semibold"
+              >
+                Acceleration Chart
+              </h1>
+            </div>
+            <div>
+              <canvas id="AccelerationChart"></canvas>
             </div>
           </div>
           <div
@@ -362,16 +393,18 @@
     const espIP = window.location.host;
     const timeOpened = Date.now();
     const timePassed = document.querySelector("#timePassed");
-    
+
     setInterval(() => {
       const timeNow = Date.now();
       const timeDiff = new Date(timeNow - timeOpened);
       const secondsPassed = Math.floor(timeDiff.getTime() / 1000) % 60;
       const hoursString = timeDiff.getUTCHours().toString().padStart(2, "0");
-      const minutesString = timeDiff.getUTCMinutes().toString().padStart(2, "0");
+      const minutesString = timeDiff
+        .getUTCMinutes()
+        .toString()
+        .padStart(2, "0");
       const secondsString = secondsPassed.toString().padStart(2, "0");
       timePassed.innerHTML = `${hoursString}:${minutesString}:${secondsString}`;
-      
     }, 1000);
 
     if (localStorage.getItem("theme") === "dark") {
